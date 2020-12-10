@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App2.NewWelcome"
+             xmlns:ViewModel="clr-namespace:App2.ViewModel;assembly=App2">
+
+    <ContentPage.BindingContext>
+        <ViewModel:MainViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <!--<ListView ItemsSource="{Binding EmployeeList}" HasUnevenRows="True">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Name}"></Label>
+                        <Label Text="{Binding Department}"></Label>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>-->
+
+    <StackLayout Orientation="Vertical">
+        <Button Command="{Binding ClickComand}">
+            
+        </Button>
+    </StackLayout>
+</ContentPage>
