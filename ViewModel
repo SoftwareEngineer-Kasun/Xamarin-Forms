@@ -1,0 +1,74 @@
+using App2.Model;
+using App2.Services;
+
+using App2.View;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Text;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
+
+namespace App2.ViewModel
+{
+    public class MainViewModel: INotifyPropertyChanged
+    {
+        public List<Employee> _employeeList;
+        public string _userName;
+        public int _password;
+        
+
+        public List<Employee> EmployeeList { 
+            get { return _employeeList; }
+            set { _employeeList = value; OnPropertyChanged(); }
+        }
+
+        public string UserName
+        {
+            get { return _userName; }
+            set { _userName = value; OnPropertyChanged(); }
+        }
+
+        public int Password
+        {
+            get { return _password; }
+            set { _password = value; OnPropertyChanged(); }
+        }
+
+        public Command ClickComand
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    AuthenticationRequests();
+                });
+            }
+        }
+
+        public MainViewModel()
+        {
+            var DataServicesEmployee = new DataServices();
+            EmployeeList = DataServicesEmployee.GetEmployees();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+        }
+
+        private void AuthenticationRequests()
+        {
+            var LoginDataServices = new LoginService();
+            for (var I=0; I <= LoginDataServices.GetAuth().Count; I++)
+            {
+                if(LoginDataServices.GetAuth()[I].Password== Password && LoginDataServices.GetAuth()[I].UserName == UserName)
+                {
+                    new NavigationPage(new NewWelcome());
+                }
+            }
+        }
+    }
+}
