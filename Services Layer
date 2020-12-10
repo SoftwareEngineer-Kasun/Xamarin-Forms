@@ -1,0 +1,19 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using App2.Model;
+
+namespace App2.Services
+{
+    public class LoginService
+    {
+        public List<LoginInfo> GetAuth()
+        {
+            var LoginInfomation = new List<LoginInfo> { 
+                new LoginInfo{UserName = "Kasun", Password = 19880726},
+                new LoginInfo{UserName = "Mark", Password = 19880726}
+            };
+            return LoginInfomation;
+        }
+    }
+}
